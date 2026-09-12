@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brijesh Kumar — Photonics Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF0E9;
+    --paper-2:#E4E7DC;
+    --grid:#CFD4C4;
+    --ink:#1B2320;
+    --ink-soft:#54615A;
+    --ink-faint:#8B978E;
+    --teal:#215B58;
+    --teal-deep:#123634;
+    --amber:#D6862B;
+    --violet:#6E5DA6;
+    --cyan:#2E9CAE;
+    --card:#F7F8F2;
+    --line:#C9CEBD;
+    --radius:2px;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 44px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/44px 100%,
+      var(--paper);
+    background-attachment:local;
+    color:var(--ink);
+    font-family:'IBM Plex Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  ::selection{background:var(--amber); color:var(--paper);}
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--teal);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--teal);display:inline-block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--teal); outline-offset:3px;}
+
+  /* NAV */
+  header.site-nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(238,240,233,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{
+    max-width:var(--maxw); margin:0 auto; padding:16px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .navbar .mark{font-family:'Fraunces', serif; font-weight:600; font-size:19px;}
+  .navbar .mark span{color:var(--teal);}
+  .navlinks{display:flex; gap:26px; list-style:none; margin:0; padding:0; font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.03em;}
+  .navlinks a{text-decoration:none; color:var(--ink-soft); border-bottom:1px solid transparent; padding-bottom:2px;}
+  .navlinks a:hover{color:var(--teal); border-color:var(--teal);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); padding:8px 10px; font-family:'IBM Plex Mono',monospace;}
+  @media (max-width:760px){
+    .navlinks{display:none;}
+    .nav-toggle{display:block;}
+  }
+
+  /* HERO */
+  .hero{
+    max-width:var(--maxw); margin:0 auto; padding:74px 32px 60px;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:center;
+  }
+  @media (max-width:860px){ .hero{grid-template-columns:1fr; padding-top:48px;} }
+  .hero h1{font-size:clamp(38px, 5.4vw, 60px); font-weight:600; line-height:1.03;}
+  .hero .role{
+    font-family:'IBM Plex Mono', monospace; font-size:14px; color:var(--ink-soft);
+    margin-top:18px; line-height:1.75;
+  }
+  .hero .role strong{color:var(--ink); font-weight:500;}
+  .hero p.lede{margin-top:20px; max-width:52ch; color:var(--ink-soft); font-size:16.5px;}
+  .hero .cta-row{margin-top:30px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13px; letter-spacing:0.02em;
+    padding:11px 18px; border:1px solid var(--ink); text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--ink);
+    transition:background 0.15s, color 0.15s;
+  }
+  .btn.primary{background:var(--teal); border-color:var(--teal); color:var(--paper);}
+  .btn.primary:hover{background:var(--teal-deep); border-color:var(--teal-deep);}
+  .btn:not(.primary):hover{background:var(--ink); color:var(--paper);}
+
+  /* resonator SVG signature */
+  .resonator-wrap{position:relative; aspect-ratio:1/1; max-width:400px; margin:0 auto;}
+  .resonator-wrap svg{width:100%; height:100%; overflow:visible;}
+  .ring{fill:none; stroke:var(--teal); stroke-width:1;}
+  .ring.mode{stroke:var(--amber); stroke-dasharray:2 5; animation:spin 46s linear infinite;}
+  .ring.mode2{stroke:var(--cyan); stroke-dasharray:1 4; animation:spin 30s linear infinite reverse;}
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .wavepath{fill:none; stroke:var(--violet); stroke-width:1.4; opacity:0.85;}
+
+  /* SECTIONS */
+  section{padding:86px 0; border-top:1px solid var(--line);}
+  section:first-of-type{border-top:none;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:24px; margin-bottom:44px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(26px,3vw,34px); font-weight:600;}
+  .section-note{font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-faint); max-width:32ch; text-align:right;}
+  @media (max-width:700px){.section-note{text-align:left;}}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:1.3fr 0.7fr; gap:56px;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-grid p{color:var(--ink-soft); max-width:62ch;}
+  .about-grid p + p{margin-top:16px;}
+  .facts{list-style:none; margin:0; padding:0; font-family:'IBM Plex Mono', monospace; font-size:13px;}
+  .facts li{display:flex; justify-content:space-between; gap:12px; padding:12px 0; border-bottom:1px solid var(--line);}
+  .facts li span:first-child{color:var(--ink-faint);}
+  .facts li span:last-child{text-align:right;}
+
+  /* RESEARCH */
+  .research-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  @media (max-width:760px){.research-grid{grid-template-columns:1fr;}}
+  .rcard{background:var(--card); border:1px solid var(--line); padding:30px; position:relative;}
+  .rcard .num{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint);}
+  .rcard h3{font-size:21px; margin-top:10px; font-weight:600;}
+  .rcard p{color:var(--ink-soft); font-size:14.5px; margin-top:12px;}
+  .rcard .tags{margin-top:18px; display:flex; gap:8px; flex-wrap:wrap;}
+  .tag{font-family:'IBM Plex Mono', monospace; font-size:11px; border:1px solid var(--line); padding:4px 8px; color:var(--ink-soft);}
+
+  /* CV / TIMELINE */
+  .timeline{border-left:1px solid var(--line); margin-left:6px; padding-left:30px; display:flex; flex-direction:column; gap:30px;}
+  .titem{position:relative;}
+  .titem::before{content:""; position:absolute; left:-35px; top:5px; width:9px; height:9px; background:var(--paper); border:1.5px solid var(--teal); border-radius:50%;}
+  .titem .tyear{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--teal);}
+  .titem h4{font-size:17px; font-weight:600; margin-top:4px; font-family:'Fraunces',serif;}
+  .titem p{color:var(--ink-soft); font-size:14.5px; margin-top:4px;}
+
+  /* PUBLICATIONS */
+  .pub-list{display:flex; flex-direction:column;}
+  .pub{
+    display:grid; grid-template-columns:70px 1fr; gap:22px;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .pub .pyear{font-family:'IBM Plex Mono', monospace; color:var(--ink-faint); font-size:13px; padding-top:3px;}
+  .pub h4{font-size:16.5px; font-weight:500; font-family:'IBM Plex Sans', sans-serif; line-height:1.4;}
+  .pub .venue{color:var(--ink-soft); font-size:13.5px; margin-top:5px; font-style:italic;}
+  .pub .plink{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--teal); text-decoration:none; margin-top:8px; display:inline-block;}
+  .pub .plink:hover{text-decoration:underline;}
+
+  /* COURSES */
+  .course-list{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line);}
+  @media (max-width:700px){.course-list{grid-template-columns:1fr;}}
+  .course{background:var(--card); padding:24px 26px;}
+  .course .role{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--amber); letter-spacing:0.06em; text-transform:uppercase;}
+  .course h4{font-family:'Fraunces', serif; font-size:18px; margin-top:8px; font-weight:600;}
+
+  /* CONTACT */
+  .contact{background:var(--teal-deep); color:var(--paper); border-top:1px solid var(--line);}
+  .contact .wrap{padding:90px 32px;}
+  .contact h2{color:var(--paper); font-size:clamp(28px,4vw,42px);}
+  .contact p{color:#C7D8D5; max-width:50ch; margin-top:16px;}
+  .contact-grid{margin-top:44px; display:grid; grid-template-columns:repeat(4,1fr); gap:16px;}
+  @media (max-width:760px){.contact-grid{grid-template-columns:1fr 1fr;}}
+  .clink{
+    border:1px solid rgba(238,240,233,0.25); padding:18px; text-decoration:none; color:var(--paper);
+    font-family:'IBM Plex Mono', monospace; font-size:13px; display:flex; flex-direction:column; gap:8px;
+    transition:background 0.15s;
+  }
+  .clink:hover{background:rgba(238,240,233,0.08);}
+  .clink .lbl{color:#8FBDB9; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;}
+
+  footer{
+    background:var(--teal-deep); color:#7FA6A2; font-family:'IBM Plex Mono', monospace;
+    font-size:12px; padding:22px 32px; text-align:center; border-top:1px solid rgba(238,240,233,0.15);
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <nav class="navbar">
+    <div class="mark">Brijesh <span>Kumar</span></div>
+    <ul class="navlinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home" style="border-top:none;">
+    <div>
+      <div class="eyebrow">Department of Physics · IIT Bombay</div>
+      <h1>Light, confined<br>and questioned.</h1>
+      <div class="role">
+        <strong>Brijesh Kumar</strong> — PhD Researcher<br>
+        Laboratory of Optics of Quantum Materials (LOQM)<br>
+        Advisor: Prof. Anshuman Kumar
+      </div>
+      <p class="lede">I study how light behaves when it's trapped — in whispering-gallery microresonators and in bound states in the continuum on photonic metasurfaces — and what that confinement is good for, from sensing to single-photon sources.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#cv">View CV</a>
+        <a class="btn" href="#publications">Publications</a>
+        <a class="btn" href="mailto:Brijesh.kumar@iitb.ac.in">Say hello</a>
+      </div>
+    </div>
+    <div class="resonator-wrap" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <circle class="ring" cx="200" cy="200" r="160"/>
+        <circle class="ring mode" cx="200" cy="200" r="130"/>
+        <circle class="ring mode2" cx="200" cy="200" r="98"/>
+        <circle class="ring" cx="200" cy="200" r="60"/>
+        <path class="wavepath" d="M40,200 Q80,140 120,200 T200,200 T280,200 T360,200"/>
+        <path class="wavepath" d="M40,220 Q80,280 120,220 T200,220 T280,220 T360,220" opacity="0.4"/>
+      </svg>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About</h2>
+        <div class="section-note">Photonics, IIT Bombay — nanofabrication to nonlinear optics</div>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>I'm a PhD researcher in the Department of Physics at IIT Bombay, working in the Laboratory of Optics of Quantum Materials (LOQM) under Prof. Anshuman Kumar. My work sits at the intersection of nanofabrication and nanophotonics — building optical structures small enough that the shape of the device changes the physics of the light inside it.</p>
+          <p>Two threads run through my research: whispering-gallery-mode microresonators, where light circulates around a cavity edge much like sound around the dome of a whispering gallery, and bound states in the continuum on photonic metasurfaces, a way of trapping light that in principle never leaks out. I'm also interested in how fabrication choices — ion-beam polishing, 2D material integration — determine how close real devices get to their theoretical limits.</p>
+          <p>In 2022 I was awarded the Prime Minister's Research Fellowship (PMRF) for this work. I'm a member of Optica (formerly OSA) and the IEEE Photonics Society, and I've served with the OSA–IEEE Photonics Student Chapter at IIT Bombay.</p>
+        </div>
+        <ul class="facts">
+          <li><span>Institution</span><span>IIT Bombay</span></li>
+          <li><span>Lab</span><span>LOQM</span></li>
+          <li><span>Advisor</span><span>Prof. Anshuman Kumar</span></li>
+          <li><span>Fellowship</span><span>PMRF, 2022</span></li>
+          <li><span>Memberships</span><span>Optica · IEEE Photonics</span></li>
+          <li><span>Location</span><span>Powai, Mumbai</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Research</h2>
+        <div class="section-note">Two directions, one question: how far can confined light be pushed?</div>
+      </div>
+      <div class="research-grid">
+        <div class="rcard">
+          <div class="num">Direction A</div>
+          <h3>Whispering-gallery modes in microresonators</h3>
+          <p>Light circulating at the rim of a microdisk builds up intensity through total internal reflection, enabling strong nonlinear effects at low input power. Sidewall roughness is the main loss channel — my work uses focused-ion-beam polishing on SiO₂ microdisks (5–20 µm diameter) to push quality factors closer to their theoretical ceiling.</p>
+          <div class="tags"><span class="tag">Microresonators</span><span class="tag">FIB fabrication</span><span class="tag">Nonlinear optics</span></div>
+        </div>
+        <div class="rcard">
+          <div class="num">Direction B</div>
+          <h3>Bound states in the continuum in photonic metasurfaces</h3>
+          <p>BICs are modes that coexist with a continuum of radiating states yet remain, in the ideal case, perfectly confined — giving metasurfaces with very high Q despite being open, planar structures. I work on realizing and probing these states, including in 2D-material and hBN-integrated platforms for sensing and single-photon emission.</p>
+          <div class="tags"><span class="tag">Metasurfaces</span><span class="tag">BIC</span><span class="tag">2D materials</span><span class="tag">Sensing</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="cv">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>CV</h2>
+        <div class="section-note"><a class="btn primary" href="#" onclick="alert('Upload your CV PDF and link it here — replace this button\'s href with the file path.'); return false;">Download PDF</a></div>
+      </div>
+      <div class="timeline">
+        <div class="titem">
+          <div class="tyear">2022 — Present</div>
+          <h4>PMRF Fellow &amp; PhD Researcher, LOQM, IIT Bombay</h4>
+          <p>Whispering-gallery microresonators and BIC metasurfaces, under Prof. Anshuman Kumar. Awarded the Prime Minister's Research Fellowship, April 2022.</p>
+        </div>
+        <div class="titem">
+          <div class="tyear">Teaching</div>
+          <h4>Teaching Assistant, Department of Physics</h4>
+          <p>Introduction to Methods of Applied Mathematics · Photonics · Introduction to Nano and Quantum Photonics · Applied Optics.</p>
+        </div>
+        <div class="titem">
+          <div class="tyear">Service</div>
+          <h4>OSA–IEEE Photonics Student Chapter, IIT Bombay</h4>
+          <p>Member of Optica (OSA) and the IEEE Photonics Society; chapter member organizing photonics seminars and events at IIT Bombay.</p>
+        </div>
+      </div>
+      <p style="margin-top:28px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-faint);">
+        Note: add your earlier education (B.Tech / M.Tech, with institutions and years) and a full skills list here — I've left the structure ready for you to extend.
+      </p>
+    </div>
+  </section>
+
+  <section id="publications">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Publications</h2>
+        <div class="section-note"><a class="plink" href="https://scholar.google.com/citations?hl=en&user=IZ7rkxQAAAAJ" target="_blank" rel="noopener">Full list on Google Scholar →</a></div>
+      </div>
+      <div class="pub-list">
+        <div class="pub">
+          <div class="pyear">—</div>
+          <div>
+            <h4>Protected ion-beam fabrication of two-dimensional transition-metal-dichalcogenide-based photonic devices</h4>
+            <div class="venue">Nanofabrication route for integrating 2D TMDCs into photonic structures while protecting them from beam damage.</div>
+          </div>
+        </div>
+        <div class="pub">
+          <div class="pyear">—</div>
+          <div>
+            <h4>Focused-ion-beam polishing of SiO₂ whispering-gallery-mode microdisk resonators</h4>
+            <div class="venue">Reducing sidewall roughness in microdisks (5–20 µm diameter) to improve optical Q-factor.</div>
+          </div>
+        </div>
+        <div class="pub">
+          <div class="pyear">—</div>
+          <div>
+            <h4>Single-photon emission from defects in hexagonal boron nitride</h4>
+            <div class="venue">Toward deterministic single-photon emitters in hBN for quantum sensing and information applications.</div>
+          </div>
+        </div>
+      </div>
+      <p style="margin-top:24px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-faint);">
+        Titles above are drawn from your public research profile — swap in exact citations, years, and journal names from your Scholar page for the final version.
+      </p>
+    </div>
+  </section>
+
+  <section id="courses">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Courses</h2>
+        <div class="section-note">Teaching assistance, Department of Physics, IIT Bombay</div>
+      </div>
+      <div class="course-list">
+        <div class="course">
+          <div class="role">TA</div>
+          <h4>Introduction to Methods of Applied Mathematics</h4>
+        </div>
+        <div class="course">
+          <div class="role">TA</div>
+          <h4>Photonics</h4>
+        </div>
+        <div class="course">
+          <div class="role">TA</div>
+          <h4>Introduction to Nano and Quantum Photonics</h4>
+        </div>
+        <div class="course">
+          <div class="role">TA</div>
+          <h4>Applied Optics</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" style="border-top:none;">
+    <div class="wrap">
+      <div class="eyebrow" style="color:#8FBDB9;">Get in touch</div>
+      <h2>Working on something adjacent?<br>Reach out.</h2>
+      <p>Open to conversations on nanophotonics, metasurface fabrication, and collaborations touching sensing or quantum light sources.</p>
+      <div class="contact-grid">
+        <a class="clink" href="mailto:Brijesh.kumar@iitb.ac.in"><span class="lbl">Institute email</span>Brijesh.kumar@iitb.ac.in</a>
+        <a class="clink" href="mailto:brijeshgangwar93@gmail.com"><span class="lbl">Personal email</span>brijeshgangwar93@gmail.com</a>
+        <a class="clink" href="https://www.linkedin.com/in/brijeshkumar-photonics/" target="_blank" rel="noopener"><span class="lbl">LinkedIn</span>brijeshkumar-photonics</a>
+        <a class="clink" href="https://github.com/brijeshgangwar93" target="_blank" rel="noopener"><span class="lbl">GitHub</span>brijeshgangwar93</a>
+        <a class="clink" href="https://twitter.com/BKG99" target="_blank" rel="noopener"><span class="lbl">X / Twitter</span>@BKG99</a>
+        <a class="clink" href="https://scholar.google.com/citations?hl=en&user=IZ7rkxQAAAAJ" target="_blank" rel="noopener"><span class="lbl">Google Scholar</span>View profile</a>
+        <a class="clink" href="https://www.phy.iitb.ac.in/" target="_blank" rel="noopener"><span class="lbl">Department</span>Physics, IIT Bombay</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>Brijesh Kumar · Department of Physics, IIT Bombay · updated 2026</footer>
+
+</body>
+</html>
