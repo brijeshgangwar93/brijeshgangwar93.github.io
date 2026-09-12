@@ -34,14 +34,30 @@
   body{
     margin:0;
     background:
-      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 44px,
-      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/44px 100%,
+      radial-gradient(circle at 12% 18%, rgba(33,91,88,0.09), transparent 42%),
+      radial-gradient(circle at 88% 8%, rgba(214,134,43,0.08), transparent 38%),
+      radial-gradient(circle at 75% 92%, rgba(110,93,166,0.07), transparent 46%),
+      radial-gradient(circle at 8% 85%, rgba(46,156,174,0.07), transparent 40%),
       var(--paper);
-    background-attachment:local;
+    background-attachment:fixed;
     color:var(--ink);
     font-family:'IBM Plex Sans', sans-serif;
     font-size:16px;
     line-height:1.6;
+    position:relative;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    pointer-events:none;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cg fill='none' stroke='%23215B58' stroke-opacity='0.12'%3E%3Ccircle cx='860' cy='40' r='60'/%3E%3Ccircle cx='860' cy='40' r='120'/%3E%3Ccircle cx='860' cy='40' r='180'/%3E%3Ccircle cx='860' cy='40' r='240'/%3E%3Ccircle cx='860' cy='40' r='300'/%3E%3Ccircle cx='860' cy='40' r='360'/%3E%3C/g%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cg fill='none' stroke='%236E5DA6' stroke-opacity='0.10'%3E%3Ccircle cx='30' cy='870' r='50'/%3E%3Ccircle cx='30' cy='870' r='110'/%3E%3Ccircle cx='30' cy='870' r='170'/%3E%3Ccircle cx='30' cy='870' r='230'/%3E%3Ccircle cx='30' cy='870' r='290'/%3E%3C/g%3E%3C/svg%3E");
+    background-repeat:no-repeat, no-repeat;
+    background-position:top right, bottom left;
+    background-size:900px 900px, 800px 800px;
   }
   ::selection{background:var(--amber); color:var(--paper);}
   a{color:inherit;}
@@ -213,11 +229,11 @@
       <div class="eyebrow">Department of Physics · IIT Bombay</div>
       <h1>Light, confined<br>and questioned.</h1>
       <div class="role">
-        <strong>Brijesh Kumar</strong> — PhD Researcher<br>
+        <strong>Brijesh Kumar</strong> — Research Associate<br>
         Laboratory of Optics of Quantum Materials (LOQM)<br>
         Advisor: Prof. Anshuman Kumar
       </div>
-      <p class="lede">I study how light behaves when it's trapped — in whispering-gallery microresonators and in bound states in the continuum on photonic metasurfaces — and what that confinement is good for, from sensing to single-photon sources.</p>
+      <p class="lede">I study how light behaves when it's trapped — bound states in the continuum in 2D van der Waals materials, and whispering-gallery microresonators — and what that confinement is good for, from sensing to single-photon sources.</p>
       <div class="cta-row">
         <a class="btn primary" href="#cv">View CV</a>
         <a class="btn" href="#publications">Publications</a>
@@ -244,15 +260,19 @@
       </div>
       <div class="about-grid">
         <div>
-          <p>I'm a PhD researcher in the Department of Physics at IIT Bombay, working in the Laboratory of Optics of Quantum Materials (LOQM) under Prof. Anshuman Kumar. My work sits at the intersection of nanofabrication and nanophotonics — building optical structures small enough that the shape of the device changes the physics of the light inside it.</p>
-          <p>Two threads run through my research: whispering-gallery-mode microresonators, where light circulates around a cavity edge much like sound around the dome of a whispering gallery, and bound states in the continuum on photonic metasurfaces, a way of trapping light that in principle never leaks out. I'm also interested in how fabrication choices — ion-beam polishing, 2D material integration — determine how close real devices get to their theoretical limits.</p>
-          <p>In 2022 I was awarded the Prime Minister's Research Fellowship (PMRF) for this work. I'm a member of Optica (formerly OSA) and the IEEE Photonics Society, and I've served with the OSA–IEEE Photonics Student Chapter at IIT Bombay.</p>
+          <p>I'm a Research Associate in the Department of Physics at IIT Bombay, working in the Laboratory of Optics of Quantum Materials (LOQM) under Prof. Anshuman Kumar. I completed my PhD here as a recipient of the Prime Minister's Research Fellowship (PMRF). My work sits at the intersection of nanofabrication and nanophotonics — building optical structures small enough that the shape of the device changes the physics of the light inside it.</p>
+          <p>Before IIT Bombay, I completed an M.Tech at IIT Kharagpur and an M.Sc. at MJP Rohilkhand University, and qualified GATE Physics in 2018. That path took me from broad physics training into a focused interest in photonics and optics.</p>
+          <p>My current research centers on bound states in the continuum (BICs) in 2D van der Waals materials — a way of trapping light that, in the ideal case, never leaks out, with real potential to reshape how compact photonic devices are built. I also work on whispering-gallery-mode microresonators, where fabrication choices like focused-ion-beam polishing determine how close real devices get to their theoretical limits.</p>
+          <p>I'm an active member of Optica (formerly OSA) and the IEEE Photonics Society, and I help organize photonics and optics events through the OSA–IEEE Photonics Student Chapter at IIT Bombay. I also have experience as a Teaching Assistant across several physics courses.</p>
         </div>
         <ul class="facts">
           <li><span>Institution</span><span>IIT Bombay</span></li>
           <li><span>Lab</span><span>LOQM</span></li>
           <li><span>Advisor</span><span>Prof. Anshuman Kumar</span></li>
-          <li><span>Fellowship</span><span>PMRF, 2022</span></li>
+          <li><span>Fellowship</span><span>PMRF</span></li>
+          <li><span>M.Tech</span><span>IIT Kharagpur</span></li>
+          <li><span>M.Sc.</span><span>MJP Rohilkhand University</span></li>
+          <li><span>GATE Physics</span><span>2018</span></li>
           <li><span>Memberships</span><span>Optica · IEEE Photonics</span></li>
           <li><span>Location</span><span>Powai, Mumbai</span></li>
         </ul>
@@ -291,13 +311,33 @@
       </div>
       <div class="timeline">
         <div class="titem">
-          <div class="tyear">2022 — Present</div>
+          <div class="tyear">Present</div>
+          <h4>Research Associate, LOQM, IIT Bombay</h4>
+          <p>Continuing research on bound states in the continuum (BICs) in 2D van der Waals materials and whispering-gallery microresonators, under Prof. Anshuman Kumar.</p>
+        </div>
+        <div class="titem">
+          <div class="tyear">2022 — PhD completed</div>
           <h4>PMRF Fellow &amp; PhD Researcher, LOQM, IIT Bombay</h4>
-          <p>Whispering-gallery microresonators and BIC metasurfaces, under Prof. Anshuman Kumar. Awarded the Prime Minister's Research Fellowship, April 2022.</p>
+          <p>Bound states in the continuum (BICs) in 2D van der Waals materials, and whispering-gallery microresonators, under Prof. Anshuman Kumar. Awarded the Prime Minister's Research Fellowship, April 2022.</p>
+        </div>
+        <div class="titem">
+          <div class="tyear">2018</div>
+          <h4>GATE Physics, Qualified</h4>
+          <p>Graduate Aptitude Test in Engineering — Physics.</p>
+        </div>
+        <div class="titem">
+          <div class="tyear">M.Tech</div>
+          <h4>Indian Institute of Technology, Kharagpur</h4>
+          <p>Master of Technology.</p>
+        </div>
+        <div class="titem">
+          <div class="tyear">M.Sc.</div>
+          <h4>MJP Rohilkhand University</h4>
+          <p>Master of Science, Physics.</p>
         </div>
         <div class="titem">
           <div class="tyear">Teaching</div>
-          <h4>Teaching Assistant, Department of Physics</h4>
+          <h4>Teaching Assistant, Department of Physics, IIT Bombay</h4>
           <p>Introduction to Methods of Applied Mathematics · Photonics · Introduction to Nano and Quantum Photonics · Applied Optics.</p>
         </div>
         <div class="titem">
@@ -307,7 +347,7 @@
         </div>
       </div>
       <p style="margin-top:28px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--ink-faint);">
-        Note: add your earlier education (B.Tech / M.Tech, with institutions and years) and a full skills list here — I've left the structure ready for you to extend.
+        Note: add exact years for your M.Tech and M.Sc., plus a skills list, whenever you have them handy.
       </p>
     </div>
   </section>
